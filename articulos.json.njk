@@ -1,0 +1,12 @@
+
+[
+{% for post in collections.articulos | reverse %}
+  {
+    "titulo": "{{ post.data.title | escape }}",
+    "fecha": "{{ post.date | date('yyyy-MM-dd') }}",
+    "resumen": "{{ post.templateContent | striptags | truncate(120, true) }}",
+    "imagen": "{{ post.data.image }}",
+    "link": "{{ post.url }}"
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
